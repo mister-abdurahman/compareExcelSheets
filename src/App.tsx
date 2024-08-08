@@ -49,25 +49,36 @@ function App() {
         Title: "Mr.",
         FirstName: each.FirstName,
         LastName: each.LastName,
+        OtherName: "NULL",
+        Gender: "Male",
+        Age: "Adult",
+        Country: "NG",
+        ChapterCode: each.ChapterCode,
+        MembershipType: "Member",
+        Rank: "Member",
+        Phone: each.WhatsAppNumber, //use phone if provided in new file
+        WhatsAppNumber: each.WhatsAppNumber,
+        Email: each.Email,
+        RoleId: 12,
+        RankCode: "03",
       };
     });
-    console.log(jsonData);
-    // const worksheet = XLSX.utils.json_to_sheet(jsonData);
+    const worksheet = XLSX.utils.json_to_sheet(jsonData);
 
-    // // Create a new workbook
-    // const workbook = XLSX.utils.book_new();
+    // Create a new workbook
+    const workbook = XLSX.utils.book_new();
 
-    // // Append the worksheet to the workbook
-    // XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    // Append the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
-    // // Generate a buffer from the workbook
-    // const excelBuffer = XLSX.write(workbook, {
-    //   bookType: "xlsx",
-    //   type: "array",
-    // });
+    // Generate a buffer from the workbook
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
 
-    // const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
-    // saveAs(blob, "data.xlsx");
+    const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
+    saveAs(blob, "data.xlsx");
   };
 
   return (
